@@ -1,0 +1,6 @@
+.form__valueOption {
+    display: block;
+    min-width: 60px;
+    margin: auto;
+    border-radius: 4px;
+}

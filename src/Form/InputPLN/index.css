@@ -1,0 +1,7 @@
+.form__inputValue {
+    width: 40%;
+    max-width: 1000px;
+    min-width: 100px;
+    text-align: right;
+    border-radius: 4px;
+}

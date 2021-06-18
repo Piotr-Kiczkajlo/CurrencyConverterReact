@@ -36,21 +36,6 @@
     text-align: right;
 }
 
-.form__inputValue {
-    width: 40%;
-    max-width: 1000px;
-    min-width: 100px;
-    text-align: right;
-    border-radius: 4px;
-}
-
-.form__valueOption {
-    display: block;
-    min-width: 60px;
-    margin: auto;
-    border-radius: 4px;
-}
-
 .form__exchangeButton {
     border: 0px;
     background-color: rgb(30, 157, 207);
