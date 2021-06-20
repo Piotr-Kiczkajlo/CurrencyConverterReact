@@ -4,16 +4,27 @@ import InputPLN from "./InputPLN";
 import currencies from "../currencies";
 import Result from "./Result";
 
-const Form = ({ result, calculateResult }) => {
+const Form = () => {
   const [currency, setCurrency] = useState(currencies[0].short);
   const [amout, setAmout] = useState("");
+  const [result, setResult] = useState("");
+  const [manualRate, setManualRate] = useState();
 
+  const calculateResult = (amout, currency) => {
+    const rate = currencies.find(({ short }) => short === currency).rate;
+
+    setResult({
+      finalyAmout: +amout / rate,
+      currency,
+    });
+  };
   const onFormSubmit = (event) => {
     event.preventDefault();
     calculateResult(amout, currency);
   };
   const onFormReset = () => {
     setAmout("");
+    setResult("");
   };
 
   return (
@@ -37,14 +48,15 @@ const Form = ({ result, calculateResult }) => {
           ))}
         </select>
         <label className="form__text"> Aktualne kursy:</label>
-        {/* <p>
+        <p>
           USD{" "}
           <input
             className="form__field"
             type="number"
             min="0.1"
-            value="3.77"
+            value={manualRate}
             step="0.01"
+            onChange={() => setManualRate(currency.rate)}
           />
         </p>
         <p>
@@ -66,7 +78,7 @@ const Form = ({ result, calculateResult }) => {
             value="4.55"
             step="0.01"
           />
-        </p> */}
+        </p>
         <span className="form__text">Otrzymujesz:</span>
         <Result result={result} />
         <button className="form__exchangeButton">Przelicz</button>
