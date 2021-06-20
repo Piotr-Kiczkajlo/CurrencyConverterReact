@@ -22,9 +22,7 @@
 
 .form__text {
     display: inline-block;
-    /* margin: 5px;
-    padding: 5px; */
-    width: 100%;
+        width: 100%;
 }
 
 .form__field {

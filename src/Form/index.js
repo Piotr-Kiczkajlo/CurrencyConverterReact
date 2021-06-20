@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "./style.css";
 import InputPLN from "./InputPLN";
-import ValueOption from "./ValueOption";
+import currencies from "../currencies";
+import Result from "./Result";
 
-const Form = () => {
+const Form = ({ result, calculateResult }) => {
+  const [currency, setCurrency] = useState(currencies[0].short);
   const [amout, setAmout] = useState("");
+
   const onFormSubmit = (event) => {
     event.preventDefault();
+    calculateResult(amout, currency);
   };
   const onFormReset = () => {
     setAmout("");
@@ -21,9 +25,19 @@ const Form = () => {
           <InputPLN amout={amout} setAmout={setAmout} />
         </span>
         <label className="form__text">Wybierz walutę:</label>
-        <ValueOption />
+        <select
+          className="form__valueOption"
+          value={currency}
+          onChange={({ target }) => setCurrency(target.value)}
+        >
+          {currencies.map((currency) => (
+            <option key={currency.short} value={currency.short}>
+              {currency.name}
+            </option>
+          ))}
+        </select>
         <label className="form__text"> Aktualne kursy:</label>
-        <p>
+        {/* <p>
           USD{" "}
           <input
             className="form__field"
@@ -52,9 +66,9 @@ const Form = () => {
             value="4.55"
             step="0.01"
           />
-        </p>
+        </p> */}
         <span className="form__text">Otrzymujesz:</span>
-        <strong className="result">0</strong>
+        <Result result={result} />
         <button className="form__exchangeButton">Przelicz</button>
         <button className="form__resetButton" type="reset">
           Wyczyść
